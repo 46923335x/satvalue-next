@@ -1,45 +1,31 @@
-import { useEffect } from "react";
+import Header from '../components/Header/Header';
+import Marquee from '../components/Marquee/Marquee';
+import Chart from '../components/Chart/Chart';
+import ReturnsTable from '../components/ReturnsTable/ReturnsTable';
+import styles from './index.module.css';
 
 export default function Home() {
-  useEffect(() => {
-    const loadPlot = async () => {
-      const Plotly = await import('plotly.js-dist-min');
-
-      const response = await fetch(
-        "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=60"
-      );
-      const data = await response.json();
-
-      const satsPerUsd = data.prices.map(([timestamp, price]) => {
-        return {
-          x: new Date(timestamp),
-          y: Math.round((1 / price) * 1e8),
-        };
-      });
-
-      Plotly.newPlot("chart", [{
-        x: satsPerUsd.map(p => p.x),
-        y: satsPerUsd.map(p => p.y),
-        mode: 'lines+markers',
-        type: 'scatter',
-        line: { color: 'orange' },
-        name: 'Sats per USD'
-      }], {
-        title: 'Sats per USD',
-        yaxis: { title: 'Sats per USD' },
-        xaxis: { title: 'Date' }
-      });
-    };
-
-    loadPlot();
-  }, []);
-
   return (
-    <div style={{ textAlign: "center", fontFamily: "Arial" }}>
-      <h1>SatValue</h1>
-      <p><strong>How many sats does it take to buy a dollar?</strong></p>
-      <p>This chart will show BTC per USD over time.</p>
-      <div id="chart" style={{ width: "90%", margin: "0 auto" }}></div>
-    </div>
+    <main>
+      <Header />
+      <Marquee />
+
+      <div className={styles.hero}>
+        <h1>Investment Returns Denominated in BTC</h1>
+        <p>View charts of investment returns across sectors, asset classes, and more, all priced in Bitcoin.</p>
+      </div>
+
+<section className={styles.metricsGrid}>
+  <div className={styles.chartBox}>
+    <h2>S&P 500</h2>
+    <Chart ticker="SPY" />
+  </div>
+  <div className={styles.returnsTableWrapper}>
+    <ReturnsTable />
+  </div>
+</section>
+
+
+    </main>
   );
 }

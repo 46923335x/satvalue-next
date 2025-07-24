@@ -1,0 +1,16 @@
+.widgetContainer {
+  width: 100%;
+  height: 400px;
+  position: relative;
+}
+
+.widget {
+  width: 100%;
+  height: 100%;
+}
+
+.chartFooter {
+  font-size: 12px;
+  text-align: right;
+  margin-top: 4px;
+}

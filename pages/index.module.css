@@ -1,0 +1,42 @@
+.hero {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+.hero h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.1em;
+  color: #555;
+}
+
+.metricsGrid {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+}
+
+.chartBox {
+  composes: card;
+  width: 800px;
+  flex-shrink: 0;
+}
+
+.returnsTableWrapper {
+  composes: card;
+  width: 400px;
+  flex-shrink: 0;
+}
